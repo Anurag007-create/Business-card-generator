@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Business Card Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+          /* Primitive Color Tokens */
+          --color-white: rgba(255, 255, 255, 1);
+          --color-black: rgba(0, 0, 0, 1);
+          --color-cream-50: rgba(252, 252, 249, 1);
+          --color-cream-100: rgba(255, 255, 253, 1);
+          --color-gray-200: rgba(245, 245, 245, 1);
+          --color-gray-300: rgba(167, 169, 169, 1);
+          --color-gray-400: rgba(119, 124, 124, 1);
+          --color-slate-500: rgba(98, 108, 113, 1);
+          --color-brown-600: rgba(94, 82, 64, 1);
+          --color-charcoal-700: rgba(31, 33, 33, 1);
+          --color-charcoal-800: rgba(38, 40, 40, 1);
+          --color-slate-900: rgba(19, 52, 59, 1);
+          --color-teal-300: rgba(50, 184, 198, 1);
+          --color-teal-400: rgba(45, 166, 178, 1);
+          --color-teal-500: rgba(33, 128, 141, 1);
+          --color-teal-600: rgba(29, 116, 128, 1);
+          --color-teal-700: rgba(26, 104, 115, 1);
+          --color-teal-800: rgba(41, 150, 161, 1);
+          --color-red-400: rgba(255, 84, 89, 1);
+          --color-red-500: rgba(192, 21, 47, 1);
+          --color-orange-400: rgba(230, 129, 97, 1);
+          --color-orange-500: rgba(168, 75, 47, 1);
+
+          /* RGB versions for opacity control */
+          --color-brown-600-rgb: 94, 82, 64;
+          --color-teal-500-rgb: 33, 128, 141;
+          --color-slate-900-rgb: 19, 52, 59;
+          --color-slate-500-rgb: 98, 108, 113;
+          --color-red-500-rgb: 192, 21, 47;
+          --color-red-400-rgb: 255, 84, 89;
+          --color-orange-500-rgb: 168, 75, 47;
+          --color-orange-400-rgb: 230, 129, 97;
+
+          /* Background color tokens (Light Mode) */
+          --color-bg-1: rgba(59, 130, 246, 0.08); /* Light blue */
+          --color-bg-2: rgba(245, 158, 11, 0.08); /* Light yellow */
+          --color-bg-3: rgba(34, 197, 94, 0.08); /* Light green */
+          --color-bg-4: rgba(239, 68, 68, 0.08); /* Light red */
+          --color-bg-5: rgba(147, 51, 234, 0.08); /* Light purple */
+          --color-bg-6: rgba(249, 115, 22, 0.08); /* Light orange */
+          --color-bg-7: rgba(236, 72, 153, 0.08); /* Light pink */
+          --color-bg-8: rgba(6, 182, 212, 0.08); /* Light cyan */
+
+          /* Semantic Color Tokens (Light Mode) */
+          --color-background: var(--color-cream-50);
+          --color-surface: var(--color-cream-100);
+          --color-text: var(--color-slate-900);
+          --color-text-secondary: var(--color-slate-500);
+          --color-primary: var(--color-teal-500);
+          --color-primary-hover: var(--color-teal-600);
+          --color-primary-active: var(--color-teal-700);
+          --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+          --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+          --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+          --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+          --color-btn-primary-text: var(--color-cream-50);
+          --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+          --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+          --color-error: var(--color-red-500);
+          --color-success: var(--color-teal-500);
+          --color-warning: var(--color-orange-500);
+          --color-info: var(--color-slate-500);
+          --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+          --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+          /* Common style patterns */
+          --focus-ring: 0 0 0 3px var(--color-focus-ring);
+          --focus-outline: 2px solid var(--color-primary);
+          --status-bg-opacity: 0.15;
+          --status-border-opacity: 0.25;
+          --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+          --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+          /* RGB versions for opacity control */
+          --color-success-rgb: 33, 128, 141;
+          --color-error-rgb: 192, 21, 47;
+          --color-warning-rgb: 168, 75, 47;
+          --color-info-rgb: 98, 108, 113;
+
+          /* Typography */
+          --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+            BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+            Monaco, Consolas, monospace;
+          --font-size-xs: 11px;
+          --font-size-sm: 12px;
+          --font-size-base: 14px;
+          --font-size-md: 14px;
+          --font-size-lg: 16px;
+          --font-size-xl: 18px;
+          --font-size-2xl: 20px;
+          --font-size-3xl: 24px;
+          --font-size-4xl: 30px;
+          --font-weight-normal: 400;
+          --font-weight-medium: 500;
+          --font-weight-semibold: 550;
+          --font-weight-bold: 600;
+          --line-height-tight: 1.2;
+          --line-height-normal: 1.5;
+          --letter-spacing-tight: -0.01em;
+
+          /* Spacing */
+          --space-0: 0;
+          --space-1: 1px;
+          --space-2: 2px;
+          --space-4: 4px;
+          --space-6: 6px;
+          --space-8: 8px;
+          --space-10: 10px;
+          --space-12: 12px;
+          --space-16: 16px;
+          --space-20: 20px;
+          --space-24: 24px;
+          --space-32: 32px;
+
+          /* Border Radius */
+          --radius-sm: 6px;
+          --radius-base: 8px;
+          --radius-md: 10px;
+          --radius-lg: 12px;
+          --radius-full: 9999px;
+
+          /* Shadows */
+          --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+          --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+          --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+            0 2px 4px -1px rgba(0, 0, 0, 0.02);
+          --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+            0 4px 6px -2px rgba(0, 0, 0, 0.02);
+          --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+          /* Animation */
+          --duration-fast: 150ms;
+          --duration-normal: 250ms;
+          --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+          /* Layout */
+          --container-sm: 640px;
+          --container-md: 768px;
+          --container-lg: 1024px;
+          --container-xl: 1280px;
+        }
+
+        /* Dark mode colors */
+        @media (prefers-color-scheme: dark) {
+          :root {
+            /* RGB versions for opacity control (Dark Mode) */
+            --color-gray-400-rgb: 119, 124, 124;
+            --color-teal-300-rgb: 50, 184, 198;
+            --color-gray-300-rgb: 167, 169, 169;
+            --color-gray-200-rgb: 245, 245, 245;
+
+            /* Background color tokens (Dark Mode) */
+            --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
+            --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
+            --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
+            --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
+            --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
+            --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
+            --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
+            --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
+
+            /* Semantic Color Tokens (Dark Mode) */
+            --color-background: var(--color-charcoal-700);
+            --color-surface: var(--color-charcoal-800);
+            --color-text: var(--color-gray-200);
+            --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+            --color-primary: var(--color-teal-300);
+            --color-primary-hover: var(--color-teal-400);
+            --color-primary-active: var(--color-teal-800);
+            --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+            --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+            --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+            --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+            --color-error: var(--color-red-400);
+            --color-success: var(--color-teal-300);
+            --color-warning: var(--color-orange-400);
+            --color-info: var(--color-gray-300);
+            --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+            --color-btn-primary-text: var(--color-slate-900);
+            --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+            --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+            --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+            --button-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+            --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+            --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+            /* Common style patterns - updated for dark mode */
+            --focus-ring: 0 0 0 3px var(--color-focus-ring);
+            --focus-outline: 2px solid var(--color-primary);
+            --status-bg-opacity: 0.15;
+            --status-border-opacity: 0.25;
+            --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+            /* RGB versions for dark mode */
+            --color-success-rgb: var(--color-teal-300-rgb);
+            --color-error-rgb: var(--color-red-400-rgb);
+            --color-warning-rgb: var(--color-orange-400-rgb);
+            --color-info-rgb: var(--color-gray-300-rgb);
+          }
+        }
+
+        /* Data attribute for manual theme switching */
+        [data-color-scheme="dark"] {
+          /* RGB versions for opacity control (dark mode) */
+          --color-gray-400-rgb: 119, 124, 124;
+          --color-teal-300-rgb: 50, 184, 198;
+          --color-gray-300-rgb: 167, 169, 169;
+          --color-gray-200-rgb: 245, 245, 245;
+
+          /* Colorful background palette - Dark Mode */
+          --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
+          --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
+          --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
+          --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
+          --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
+          --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
+          --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
+          --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
+
+          /* Semantic Color Tokens (Dark Mode) */
+          --color-background: var(--color-charcoal-700);
+          --color-surface: var(--color-charcoal-800);
+          --color-text: var(--color-gray-200);
+          --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+          --color-primary: var(--color-teal-300);
+          --color-primary-hover: var(--color-teal-400);
+          --color-primary-active: var(--color-teal-800);
+          --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+          --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+          --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+          --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+          --color-error: var(--color-red-400);
+          --color-success: var(--color-teal-300);
+          --color-warning: var(--color-orange-400);
+          --color-info: var(--color-gray-300);
+          --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+          --color-btn-primary-text: var(--color-slate-900);
+          --color-card-border: rgba(var(--color-gray-400-rgb), 0.15);
+          --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+          --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+          --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+          --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+          /* Common style patterns - updated for dark mode */
+          --focus-ring: 0 0 0 3px var(--color-focus-ring);
+          --focus-outline: 2px solid var(--color-primary);
+          --status-bg-opacity: 0.15;
+          --status-border-opacity: 0.25;
+          --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+          --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+          /* RGB versions for dark mode */
+          --color-success-rgb: var(--color-teal-300-rgb);
+          --color-error-rgb: var(--color-red-400-rgb);
+          --color-warning-rgb: var(--color-orange-400-rgb);
+          --color-info-rgb: var(--color-gray-300-rgb);
+        }
+
+        [data-color-scheme="light"] {
+          /* RGB versions for opacity control (light mode) */
+          --color-brown-600-rgb: 94, 82, 64;
+          --color-teal-500-rgb: 33, 128, 141;
+          --color-slate-900-rgb: 19, 52, 59;
+
+          /* Semantic Color Tokens (Light Mode) */
+          --color-background: var(--color-cream-50);
+          --color-surface: var(--color-cream-100);
+          --color-text: var(--color-slate-900);
+          --color-text-secondary: var(--color-slate-500);
+          --color-primary: var(--color-teal-500);
+          --color-primary-hover: var(--color-teal-600);
+          --color-primary-active: var(--color-teal-700);
+          --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+          --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+          --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+          --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+          --color-btn-primary-text: var(--color-cream-50);
+          --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+          --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+          --color-error: var(--color-red-500);
+          --color-success: var(--color-teal-500);
+          --color-warning: var(--color-orange-500);
+          --color-info: var(--color-slate-500);
+          --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+
+          /* RGB versions for light mode */
+          --color-success-rgb: var(--color-teal-500-rgb);
+          --color-error-rgb: var(--color-red-500-rgb);
+          --color-warning-rgb: var(--color-orange-500-rgb);
+          --color-info-rgb: var(--color-slate-500-rgb);
+        }
+
+        /* Base styles */
+        html {
+          font-size: var(--font-size-base);
+          font-family: var(--font-family-base);
+          line-height: var(--line-height-normal);
+          color: var(--color-text);
+          background-color: var(--color-background);
+          -webkit-font-smoothing: antialiased;
+          box-sizing: border-box;
+        }
+
+        body {
+          margin: 0;
+          padding: 0;
+        }
+
+        *,
+        *::before,
+        *::after {
+          box-sizing: inherit;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          margin: 0;
+          font-weight: var(--font-weight-semibold);
+          line-height: var(--line-height-tight);
+          color: var(--color-text);
+          letter-spacing: var(--letter-spacing-tight);
+        }
+
+        h1 {
+          font-size: var(--font-size-4xl);
+        }
+        h2 {
+          font-size: var(--font-size-3xl);
+        }
+        h3 {
+          font-size: var(--font-size-2xl);
+        }
+        h4 {
+          font-size: var(--font-size-xl);
+        }
+        h5 {
+          font-size: var(--font-size-lg);
+        }
+        h6 {
+          font-size: var(--font-size-md);
+        }
+
+        p {
+          margin: 0 0 var(--space-16) 0;
+        }
+
+        a {
+          color: var(--color-primary);
+          text-decoration: none;
+          transition: color var(--duration-fast) var(--ease-standard);
+        }
+
+        a:hover {
+          color: var(--color-primary-hover);
+        }
+
+        code,
+        pre {
+          font-family: var(--font-family-mono);
+          font-size: calc(var(--font-size-base) * 0.95);
+          background-color: var(--color-secondary);
+          border-radius: var(--radius-sm);
+        }
+
+        code {
+          padding: var(--space-1) var(--space-4);
+        }
+
+        pre {
+          padding: var(--space-16);
+          margin: var(--space-16) 0;
+          overflow: auto;
+          border: 1px solid var(--color-border);
+        }
+
+        pre code {
+          background: none;
+          padding: 0;
+        }
+
+        /* Buttons */
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: var(--space-8) var(--space-16);
+          border-radius: var(--radius-base);
+          font-size: var(--font-size-base);
+          font-weight: 500;
+          line-height: 1.5;
+          cursor: pointer;
+          transition: all var(--duration-normal) var(--ease-standard);
+          border: none;
+          text-decoration: none;
+          position: relative;
+        }
+
+        .btn:focus-visible {
+          outline: none;
+          box-shadow: var(--focus-ring);
+        }
+
+        .btn--primary {
+          background: var(--color-primary);
+          color: var(--color-btn-primary-text);
+        }
+
+        .btn--primary:hover {
+          background: var(--color-primary-hover);
+        }
+
+        .btn--primary:active {
+          background: var(--color-primary-active);
+        }
+
+        .btn--secondary {
+          background: var(--color-secondary);
+          color: var(--color-text);
+        }
+
+        .btn--secondary:hover {
+          background: var(--color-secondary-hover);
+        }
+
+        .btn--secondary:active {
+          background: var(--color-secondary-active);
+        }
+
+        .btn--outline {
+          background: transparent;
+          border: 1px solid var(--color-border);
+          color: var(--color-text);
+        }
+
+        .btn--outline:hover {
+          background: var(--color-secondary);
+        }
+
+        .btn--sm {
+          padding: var(--space-4) var(--space-12);
+          font-size: var(--font-size-sm);
+          border-radius: var(--radius-sm);
+        }
+
+        .btn--lg {
+          padding: var(--space-10) var(--space-20);
+          font-size: var(--font-size-lg);
+          border-radius: var(--radius-md);
+        }
+
+        .btn--full-width {
+          width: 100%;
+        }
+
+        .btn:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        /* Form elements */
+        .form-control {
+          display: block;
+          width: 100%;
+          padding: var(--space-8) var(--space-12);
+          font-size: var(--font-size-md);
+          line-height: 1.5;
+          color: var(--color-text);
+          background-color: var(--color-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-base);
+          transition: border-color var(--duration-fast) var(--ease-standard),
+            box-shadow var(--duration-fast) var(--ease-standard);
+        }
+
+        textarea.form-control {
+          font-family: var(--font-family-base);
+          font-size: var(--font-size-base);
+        }
+
+        select.form-control {
+          padding: var(--space-8) var(--space-12);
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-image: var(--select-caret-light);
+          background-repeat: no-repeat;
+          background-position: right var(--space-12) center;
+          background-size: 16px;
+          padding-right: var(--space-32);
+        }
+
+        /* Add a dark mode specific caret */
+        @media (prefers-color-scheme: dark) {
+          select.form-control {
+            background-image: var(--select-caret-dark);
+          }
+        }
+
+        /* Also handle data-color-scheme */
+        [data-color-scheme="dark"] select.form-control {
+          background-image: var(--select-caret-dark);
+        }
+
+        [data-color-scheme="light"] select.form-control {
+          background-image: var(--select-caret-light);
+        }
+
+        .form-control:focus {
+          border-color: var(--color-primary);
+          outline: var(--focus-outline);
+        }
+
+        .form-label {
+          display: block;
+          margin-bottom: var(--space-8);
+          font-weight: var(--font-weight-medium);
+          font-size: var(--font-size-sm);
+        }
+
+        .form-group {
+          margin-bottom: var(--space-16);
+        }
+
+        /* Card component */
+        .card {
+          background-color: var(--color-surface);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-card-border);
+          box-shadow: var(--shadow-sm);
+          overflow: hidden;
+          transition: box-shadow var(--duration-normal) var(--ease-standard);
+        }
+
+        .card:hover {
+          box-shadow: var(--shadow-md);
+        }
+
+        .card__body {
+          padding: var(--space-16);
+        }
+
+        .card__header,
+        .card__footer {
+          padding: var(--space-16);
+          border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        /* Status indicators - simplified with CSS variables */
+        .status {
+          display: inline-flex;
+          align-items: center;
+          padding: var(--space-6) var(--space-12);
+          border-radius: var(--radius-full);
+          font-weight: var(--font-weight-medium);
+          font-size: var(--font-size-sm);
+        }
+
+        .status--success {
+          background-color: rgba(
+            var(--color-success-rgb, 33, 128, 141),
+            var(--status-bg-opacity)
+          );
+          color: var(--color-success);
+          border: 1px solid
+            rgba(var(--color-success-rgb, 33, 128, 141), var(--status-border-opacity));
+        }
+
+        .status--error {
+          background-color: rgba(
+            var(--color-error-rgb, 192, 21, 47),
+            var(--status-bg-opacity)
+          );
+          color: var(--color-error);
+          border: 1px solid
+            rgba(var(--color-error-rgb, 192, 21, 47), var(--status-border-opacity));
+        }
+
+        .status--warning {
+          background-color: rgba(
+            var(--color-warning-rgb, 168, 75, 47),
+            var(--status-bg-opacity)
+          );
+          color: var(--color-warning);
+          border: 1px solid
+            rgba(var(--color-warning-rgb, 168, 75, 47), var(--status-border-opacity));
+        }
+
+        .status--info {
+          background-color: rgba(
+            var(--color-info-rgb, 98, 108, 113),
+            var(--status-bg-opacity)
+          );
+          color: var(--color-info);
+          border: 1px solid
+            rgba(var(--color-info-rgb, 98, 108, 113), var(--status-border-opacity));
+        }
+
+        /* Container layout */
+        .container {
+          width: 100%;
+          margin-right: auto;
+          margin-left: auto;
+          padding-right: var(--space-16);
+          padding-left: var(--space-16);
+        }
+
+        @media (min-width: 640px) {
+          .container {
+            max-width: var(--container-sm);
+          }
+        }
+        @media (min-width: 768px) {
+          .container {
+            max-width: var(--container-md);
+          }
+        }
+        @media (min-width: 1024px) {
+          .container {
+            max-width: var(--container-lg);
+          }
+        }
+        @media (min-width: 1280px) {
+          .container {
+            max-width: var(--container-xl);
+          }
+        }
+
+        /* Utility classes */
+        .flex {
+          display: flex;
+        }
+        .flex-col {
+          flex-direction: column;
+        }
+        .items-center {
+          align-items: center;
+        }
+        .justify-center {
+          justify-content: center;
+        }
+        .justify-between {
+          justify-content: space-between;
+        }
+        .gap-4 {
+          gap: var(--space-4);
+        }
+        .gap-8 {
+          gap: var(--space-8);
+        }
+        .gap-16 {
+          gap: var(--space-16);
+        }
+
+        .m-0 {
+          margin: 0;
+        }
+        .mt-8 {
+          margin-top: var(--space-8);
+        }
+        .mb-8 {
+          margin-bottom: var(--space-8);
+        }
+        .mx-8 {
+          margin-left: var(--space-8);
+          margin-right: var(--space-8);
+        }
+        .my-8 {
+          margin-top: var(--space-8);
+          margin-bottom: var(--space-8);
+        }
+
+        .p-0 {
+          padding: 0;
+        }
+        .py-8 {
+          padding-top: var(--space-8);
+          padding-bottom: var(--space-8);
+        }
+        .px-8 {
+          padding-left: var(--space-8);
+          padding-right: var(--space-8);
+        }
+        .py-16 {
+          padding-top: var(--space-16);
+          padding-bottom: var(--space-16);
+        }
+        .px-16 {
+          padding-left: var(--space-16);
+          padding-right: var(--space-16);
+        }
+
+        .block {
+          display: block;
+        }
+        .hidden {
+          display: none;
+        }
+
+        /* Accessibility */
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border-width: 0;
+        }
+
+        :focus-visible {
+          outline: var(--focus-outline);
+          outline-offset: 2px;
+        }
+
+        /* Dark mode specifics */
+        [data-color-scheme="dark"] .btn--outline {
+          border: 1px solid var(--color-border-secondary);
+        }
+
+        @font-face {
+          font-family: 'FKGroteskNeue';
+          src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
+            format('woff2');
+        }
+
+        /* END PERPLEXITY DESIGN SYSTEM */
+        /* Business Card Generator Styles */
+
+        /* Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-24);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-32);
+        }
+
+        .header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin-bottom: var(--space-8);
+        }
+
+        .header-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        /* Template Selector */
+        .template-selector {
+            margin-bottom: var(--space-32);
+        }
+
+        .template-selector h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin-bottom: var(--space-16);
+            text-align: center;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-16);
+            margin-bottom: var(--space-24);
+        }
+
+        .template-option {
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-16);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            text-align: center;
+        }
+
+        .template-option:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .template-option.active {
+            border-color: var(--color-primary);
+            background: var(--color-bg-1);
+        }
+
+        .template-preview {
+            width: 100%;
+            height: 80px;
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .minimalist-preview {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+        }
+
+        .professional-preview {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        }
+
+        .creative-preview {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .corporate-preview {
+            background: linear-gradient(135deg, #ffffff 0%, #1e40af 40%, #ffffff 100%);
+        }
+
+        .tech-preview {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+        }
+
+        .tech-preview::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(6, 214, 160, 0.1) 50%, transparent 70%);
+        }
+
+        .template-option h3 {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin-bottom: var(--space-4);
+        }
+
+        .template-option p {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-32);
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-24);
+            }
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .form-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin-bottom: var(--space-20);
+            text-align: center;
+        }
+
+        .form-section-group {
+            margin-bottom: var(--space-24);
+            border: 1px solid var(--color-card-border-inner);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+        }
+
+        .form-group-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+            margin-bottom: var(--space-16);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .form-group-title i {
+            color: var(--color-primary);
+            font-size: var(--font-size-base);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-16);
+            margin-bottom: var(--space-16);
+        }
+
+        .form-row:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: var(--space-12);
+            }
+        }
+
+        .form-group {
+            margin-bottom: var(--space-16);
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-text {
+            display: block;
+            margin-top: var(--space-4);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+        }
+
+        .character-count {
+            text-align: right;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+        }
+
+        .color-input {
+            height: 40px;
+            padding: var(--space-4);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            background: var(--color-surface);
+            cursor: pointer;
+        }
+
+        .color-input::-webkit-color-swatch {
+            border: none;
+            border-radius: var(--radius-sm);
+        }
+
+        .color-input::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: var(--space-12);
+            justify-content: center;
+            margin-top: var(--space-24);
+            padding-top: var(--space-20);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Preview Section */
+        .preview-section {
+            position: sticky;
+            top: var(--space-24);
+        }
+
+        .preview-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin-bottom: var(--space-20);
+            text-align: center;
+        }
+
+        /* Business Card Container */
+        .card-container {
+            perspective: 1000px;
+            margin-bottom: var(--space-24);
+            display: flex;
+            justify-content: center;
+        }
+
+        .business-card {
+            width: 350px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s var(--ease-standard);
+            cursor: pointer;
+        }
+
+        .business-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        .card-content {
+            height: 100%;
+            padding: var(--space-16);
+            display: flex;
+            flex-direction: column;
+            font-family: var(--font-family-base);
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-12);
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            flex: 1;
+        }
+
+        .profile-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--color-primary);
+        }
+
+        .name-section h1 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            margin: 0 0 var(--space-4) 0;
+            line-height: var(--line-height-tight);
+        }
+
+        .name-section h2 {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            margin: 0 0 var(--space-2) 0;
+            line-height: var(--line-height-tight);
+            color: var(--color-primary);
+        }
+
+        .name-section p {
+            font-size: var(--font-size-xs);
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .logo-section {
+            flex-shrink: 0;
+        }
+
+        .company-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        /* Card Body */
+        .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-size: var(--font-size-xs);
+        }
+
+        .contact-item i {
+            width: 12px;
+            text-align: center;
+            color: var(--color-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--space-8);
+            margin-top: var(--space-12);
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            font-size: var(--font-size-xs);
+            transition: transform var(--duration-fast) var(--ease-standard);
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        /* Card Back */
+        .back-header h3 {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-semibold);
+            margin: 0 0 var(--space-8) 0;
+            color: var(--color-primary);
+        }
+
+        .about-section {
+            margin-bottom: var(--space-12);
+        }
+
+        .about-section p {
+            font-size: var(--font-size-xs);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .skills-section {
+            margin-bottom: var(--space-12);
+        }
+
+        .skills-section h4 {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            margin: 0 0 var(--space-6) 0;
+            color: var(--color-primary);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+
+        .skill-tag {
+            padding: var(--space-2) var(--space-6);
+            background: var(--color-primary);
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: 10px;
+            font-weight: var(--font-weight-medium);
+        }
+
+        .qr-section {
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .qr-code {
+            display: inline-block;
+            margin-bottom: var(--space-4);
+        }
+
+        .qr-code canvas {
+            display: block;
+        }
+
+        .qr-text {
+            font-size: 10px;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        .address-section {
+            margin-top: var(--space-8);
+        }
+
+        .address-section h4 {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            margin: 0 0 var(--space-4) 0;
+            color: var(--color-primary);
+        }
+
+        .address-section p {
+            font-size: var(--font-size-xs);
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        /* Template Styles */
+        .business-card[data-template="minimalist"] .card-side {
+            background: #ffffff;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .business-card[data-template="minimalist"] .name-section h2,
+        .business-card[data-template="minimalist"] .back-header h3,
+        .business-card[data-template="minimalist"] .skills-section h4,
+        .business-card[data-template="minimalist"] .address-section h4 {
+            color: #2563eb;
+        }
+
+        .business-card[data-template="minimalist"] .contact-item i {
+            color: #2563eb;
+        }
+
+        .business-card[data-template="minimalist"] .social-link {
+            background: #2563eb;
+        }
+
+        .business-card[data-template="minimalist"] .skill-tag {
+            background: #2563eb;
+        }
+
+        .business-card[data-template="professional"] .card-side {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: #f8fafc;
+        }
+
+        .business-card[data-template="professional"] .name-section h2,
+        .business-card[data-template="professional"] .back-header h3,
+        .business-card[data-template="professional"] .skills-section h4,
+        .business-card[data-template="professional"] .address-section h4 {
+            color: #fbbf24;
+        }
+
+        .business-card[data-template="professional"] .contact-item i {
+            color: #fbbf24;
+        }
+
+        .business-card[data-template="professional"] .social-link {
+            background: #fbbf24;
+            color: #1e293b;
+        }
+
+        .business-card[data-template="professional"] .skill-tag {
+            background: #fbbf24;
+            color: #1e293b;
+        }
+
+        .business-card[data-template="creative"] .card-side {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+
+        .business-card[data-template="creative"] .name-section h2,
+        .business-card[data-template="creative"] .back-header h3,
+        .business-card[data-template="creative"] .skills-section h4,
+        .business-card[data-template="creative"] .address-section h4 {
+            color: #ffffff;
+        }
+
+        .business-card[data-template="creative"] .contact-item i {
+            color: #ffffff;
+        }
+
+        .business-card[data-template="creative"] .social-link {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+        }
+
+        .business-card[data-template="creative"] .skill-tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+        }
+
+        .business-card[data-template="corporate"] .card-side {
+            background: #ffffff;
+            color: #1e293b;
+            border-top: 8px solid #1e40af;
+        }
+
+        .business-card[data-template="corporate"] .name-section h2,
+        .business-card[data-template="corporate"] .back-header h3,
+        .business-card[data-template="corporate"] .skills-section h4,
+        .business-card[data-template="corporate"] .address-section h4 {
+            color: #1e40af;
+        }
+
+        .business-card[data-template="corporate"] .contact-item i {
+            color: #1e40af;
+        }
+
+        .business-card[data-template="corporate"] .social-link {
+            background: #1e40af;
+        }
+
+        .business-card[data-template="corporate"] .skill-tag {
+            background: #1e40af;
+        }
+
+        .business-card[data-template="tech"] .card-side {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-card[data-template="tech"] .card-side::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(6, 214, 160, 0.05) 0%, transparent 70%);
+            animation: techGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes techGlow {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .business-card[data-template="tech"] .name-section h2,
+        .business-card[data-template="tech"] .back-header h3,
+        .business-card[data-template="tech"] .skills-section h4,
+        .business-card[data-template="tech"] .address-section h4 {
+            color: #06d6a0;
+        }
+
+        .business-card[data-template="tech"] .contact-item i {
+            color: #06d6a0;
+        }
+
+        .business-card[data-template="tech"] .social-link {
+            background: linear-gradient(135deg, #06d6a0, #118ab2);
+        }
+
+        .business-card[data-template="tech"] .skill-tag {
+            background: linear-gradient(135deg, #06d6a0, #118ab2);
+        }
+
+        /* Export Options */
+        .export-options {
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-20);
+            text-align: center;
+        }
+
+        .export-options h3 {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+            margin-bottom: var(--space-16);
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: var(--space-12);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Animations */
+        .template-option {
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .business-card {
+            animation: cardSlideIn 0.6s ease-out;
+        }
+
+        @keyframes cardSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) rotateX(10deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-16);
+            }
+            
+            .template-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: var(--space-12);
+            }
+            
+            .business-card {
+                width: 280px;
+                height: 160px;
+            }
+            
+            .card-content {
+                padding: var(--space-12);
+            }
+            
+            .profile-image {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .name-section h1 {
+                font-size: var(--font-size-base);
+            }
+            
+            .export-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .business-card {
+                width: 240px;
+                height: 135px;
+            }
+            
+            .profile-section {
+                gap: var(--space-8);
+            }
+            
+            .profile-image {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .name-section h1 {
+                font-size: var(--font-size-sm);
+            }
+            
+            .name-section h2 {
+                font-size: 11px;
+            }
+            
+            .contact-item {
+                font-size: 10px;
+            }
+            
+            .social-link {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Premium Business Card Generator</h1>
+            <p class="header-subtitle">Create professional business cards with multiple templates and customization options</p>
+        </header>
+
+        <!-- Template Selector -->
+        <section class="template-selector">
+            <h2>Choose Your Template</h2>
+            <div class="template-grid">
+                <div class="template-option active" data-template="minimalist">
+                    <div class="template-preview minimalist-preview"></div>
+                    <h3>Modern Minimalist</h3>
+                    <p>Clean white background with professional typography</p>
+                </div>
+                <div class="template-option" data-template="professional">
+                    <div class="template-preview professional-preview"></div>
+                    <h3>Professional Dark</h3>
+                    <p>Elegant dark theme with gold accents</p>
+                </div>
+                <div class="template-option" data-template="creative">
+                    <div class="template-preview creative-preview"></div>
+                    <h3>Creative Gradient</h3>
+                    <p>Modern gradient backgrounds with bold typography</p>
+                </div>
+                <div class="template-option" data-template="corporate">
+                    <div class="template-preview corporate-preview"></div>
+                    <h3>Corporate Classic</h3>
+                    <p>Traditional business style with navy and white</p>
+                </div>
+                <div class="template-option" data-template="tech">
+                    <div class="template-preview tech-preview"></div>
+                    <h3>Tech Futuristic</h3>
+                    <p>Modern tech design with neon accents</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <!-- Form Section -->
+            <section class="form-section">
+                <h2>Customize Your Business Card</h2>
+                
+                <form id="businessCardForm" class="form">
+                    <!-- Personal Information -->
+                    <div class="form-section-group">
+                        <h3 class="form-group-title">
+                            <i class="fas fa-user"></i>
+                            Personal Information
+                        </h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName" class="form-label">Full Name *</label>
+                                <input type="text" id="fullName" class="form-control" required aria-describedby="fullName-help">
+                                <small id="fullName-help" class="form-text">Your professional name as it should appear on the card</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="jobTitle" class="form-label">Job Title</label>
+                                <input type="text" id="jobTitle" class="form-control" aria-describedby="jobTitle-help">
+                                <small id="jobTitle-help" class="form-text">Your position or professional title</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company" class="form-label">Company Name</label>
+                                <input type="text" id="company" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="department" class="form-label">Department</label>
+                                <input type="text" id="department" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="form-section-group">
+                        <h3 class="form-group-title">
+                            <i class="fas fa-address-book"></i>
+                            Contact Information
+                        </h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Primary Phone</label>
+                                <input type="tel" id="phone" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phoneSecondary" class="form-label">Secondary Phone</label>
+                                <input type="tel" id="phoneSecondary" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="website" class="form-label">Website/Portfolio</label>
+                                <input type="url" id="website" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="form-label">Address (Optional)</label>
+                            <textarea id="address" class="form-control" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="form-section-group">
+                        <h3 class="form-group-title">
+                            <i class="fas fa-share-alt"></i>
+                            Social Media
+                        </h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="linkedin" class="form-label">
+                                    <i class="fab fa-linkedin"></i> LinkedIn
+                                </label>
+                                <input type="url" id="linkedin" class="form-control" placeholder="linkedin.com/in/username">
+                            </div>
+                            <div class="form-group">
+                                <label for="github" class="form-label">
+                                    <i class="fab fa-github"></i> GitHub
+                                </label>
+                                <input type="url" id="github" class="form-control" placeholder="github.com/username">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="twitter" class="form-label">
+                                    <i class="fab fa-twitter"></i> Twitter
+                                </label>
+                                <input type="text" id="twitter" class="form-control" placeholder="@username">
+                            </div>
+                            <div class="form-group">
+                                <label for="instagram" class="form-label">
+                                    <i class="fab fa-instagram"></i> Instagram
+                                </label>
+                                <input type="text" id="instagram" class="form-control" placeholder="@username">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="form-section-group">
+                        <h3 class="form-group-title">
+                            <i class="fas fa-info-circle"></i>
+                            Additional Information
+                        </h3>
+                        <div class="form-group">
+                            <label for="about" class="form-label">About Me/Bio</label>
+                            <textarea id="about" class="form-control" rows="3" maxlength="200"></textarea>
+                            <small class="form-text character-count">0/200 characters</small>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="skills" class="form-label">Skills/Specializations</label>
+                                <input type="text" id="skills" class="form-control" placeholder="React, Node.js, Python, AWS">
+                            </div>
+                            <div class="form-group">
+                                <label for="experience" class="form-label">Years of Experience</label>
+                                <input type="number" id="experience" class="form-control" min="0" max="50">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Elements -->
+                    <div class="form-section-group">
+                        <h3 class="form-group-title">
+                            <i class="fas fa-palette"></i>
+                            Visual Elements
+                        </h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profilePicture" class="form-label">Profile Picture</label>
+                                <input type="file" id="profilePicture" class="form-control" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="companyLogo" class="form-label">Company Logo</label>
+                                <input type="file" id="companyLogo" class="form-control" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fontFamily" class="form-label">Font Family</label>
+                                <select id="fontFamily" class="form-control">
+                                    <option value="'Inter', sans-serif">Inter (Modern)</option>
+                                    <option value="'Playfair Display', serif">Playfair Display (Elegant)</option>
+                                    <option value="'Roboto', sans-serif">Roboto (Professional)</option>
+                                    <option value="'Poppins', sans-serif">Poppins (Friendly)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="accentColor" class="form-label">Accent Color</label>
+                                <input type="color" id="accentColor" class="form-control color-input" value="#3b82f6">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button type="button" id="flipCard" class="btn btn--secondary">
+                        <i class="fas fa-sync-alt"></i>
+                        Flip Card
+                    </button>
+                    <button type="button" id="resetForm" class="btn btn--outline">
+                        <i class="fas fa-undo"></i>
+                        Reset
+                    </button>
+                </div>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="preview-section">
+                <h2>Live Preview</h2>
+                
+                <div class="card-container" id="cardContainer">
+                    <div class="business-card" id="businessCard">
+                        <!-- Front Side -->
+                        <div class="card-side card-front" id="cardFront">
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <div class="profile-section">
+                                        <img id="profileImage" src="https://images.unsplash.com/photo-1494790108755-2616b0c2c5b6?w=150&h=150&fit=crop&crop=face" alt="Profile" class="profile-image">
+                                        <div class="name-section">
+                                            <h1 id="displayName">Alex Johnson</h1>
+                                            <h2 id="displayTitle">Senior Software Engineer</h2>
+                                            <p id="displayCompany">TechCorp Solutions</p>
+                                        </div>
+                                    </div>
+                                    <div class="logo-section">
+                                        <img id="companyLogoDisplay" src="" alt="Company Logo" class="company-logo hidden">
+                                    </div>
+                                </div>
+                                
+                                <div class="card-body">
+                                    <div class="contact-info">
+                                        <div class="contact-item" id="emailContact">
+                                            <i class="fas fa-envelope"></i>
+                                            <span id="displayEmail">alex.johnson@techcorp.com</span>
+                                        </div>
+                                        <div class="contact-item" id="phoneContact">
+                                            <i class="fas fa-phone"></i>
+                                            <span id="displayPhone">+1 (555) 123-4567</span>
+                                        </div>
+                                        <div class="contact-item hidden" id="phoneSecondaryContact">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            <span id="displayPhoneSecondary"></span>
+                                        </div>
+                                        <div class="contact-item hidden" id="websiteContact">
+                                            <i class="fas fa-globe"></i>
+                                            <span id="displayWebsite"></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="social-links">
+                                        <a id="linkedinLink" href="#" class="social-link hidden" target="_blank" rel="noopener">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                        <a id="githubLink" href="#" class="social-link hidden" target="_blank" rel="noopener">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                        <a id="twitterLink" href="#" class="social-link hidden" target="_blank" rel="noopener">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a id="instagramLink" href="#" class="social-link hidden" target="_blank" rel="noopener">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Back Side -->
+                        <div class="card-side card-back" id="cardBack">
+                            <div class="card-content">
+                                <div class="back-header">
+                                    <h3>About</h3>
+                                </div>
+                                <div class="about-section">
+                                    <p id="displayAbout">Passionate full-stack developer with 8+ years of experience building scalable web applications and leading development teams.</p>
+                                </div>
+                                
+                                <div class="skills-section">
+                                    <h4>Skills & Expertise</h4>
+                                    <div class="skills-list" id="displaySkills">
+                                        <span class="skill-tag">React</span>
+                                        <span class="skill-tag">Node.js</span>
+                                        <span class="skill-tag">Python</span>
+                                        <span class="skill-tag">AWS</span>
+                                        <span class="skill-tag">TypeScript</span>
+                                        <span class="skill-tag">MongoDB</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="qr-section">
+                                    <div id="qrCode" class="qr-code"></div>
+                                    <p class="qr-text">Scan to save contact</p>
+                                </div>
+                                
+                                <div class="address-section hidden" id="addressSection">
+                                    <h4>Address</h4>
+                                    <p id="displayAddress"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Options -->
+                <div class="export-options">
+                    <h3>Export Options</h3>
+                    <div class="export-buttons">
+                        <button type="button" id="exportPNG" class="btn btn--primary">
+                            <i class="fas fa-image"></i>
+                            Export PNG
+                        </button>
+                        <button type="button" id="exportPDF" class="btn btn--primary">
+                            <i class="fas fa-file-pdf"></i>
+                            Export PDF
+                        </button>
+                        <button type="button" id="exportVCard" class="btn btn--secondary">
+                            <i class="fas fa-address-card"></i>
+                            Export vCard
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Premium Business Card Generator JavaScript
+
+        class BusinessCardGenerator {
+            constructor() {
+                this.currentTemplate = 'minimalist';
+                this.qrCode = null;
+                this.isFlipped = false;
+                
+                // Template configurations
+                this.templates = {
+                    minimalist: {
+                        name: "Modern Minimalist",
+                        primaryColor: "#2563eb",
+                        secondaryColor: "#64748b",
+                        backgroundColor: "#ffffff",
+                        textColor: "#1e293b",
+                        accentColor: "#3b82f6"
+                    },
+                    professional: {
+                        name: "Professional Dark",
+                        primaryColor: "#fbbf24",
+                        secondaryColor: "#d97706",
+                        backgroundColor: "#1e293b",
+                        textColor: "#f8fafc",
+                        accentColor: "#f59e0b"
+                    },
+                    creative: {
+                        name: "Creative Gradient",
+                        primaryColor: "#8b5cf6",
+                        secondaryColor: "#ec4899",
+                        backgroundColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                        textColor: "#ffffff",
+                        accentColor: "#a855f7"
+                    },
+                    corporate: {
+                        name: "Corporate Classic",
+                        primaryColor: "#1e40af",
+                        secondaryColor: "#3730a3",
+                        backgroundColor: "#ffffff",
+                        textColor: "#1e293b",
+                        accentColor: "#2563eb"
+                    },
+                    tech: {
+                        name: "Tech Futuristic",
+                        primaryColor: "#06d6a0",
+                        secondaryColor: "#118ab2",
+                        backgroundColor: "#0f172a",
+                        textColor: "#e2e8f0",
+                        accentColor: "#10b981"
+                    }
+                };
+
+                // Sample data
+                this.sampleData = {
+                    name: "Alex Johnson",
+                    title: "Senior Software Engineer",
+                    company: "TechCorp Solutions",
+                    department: "Product Development",
+                    email: "alex.johnson@techcorp.com",
+                    phone: "+1 (555) 123-4567",
+                    website: "www.alexjohnson.dev",
+                    linkedin: "linkedin.com/in/alexjohnson",
+                    github: "github.com/alexjohnson",
+                    about: "Passionate full-stack developer with 8+ years of experience building scalable web applications and leading development teams.",
+                    skills: "React, Node.js, Python, AWS, TypeScript, MongoDB"
+                };
+
+                this.init();
+            }
+
+            init() {
+                this.bindEventListeners();
+                this.loadSampleData();
+                this.loadFromStorage();
+                this.updateCard();
+                this.generateQRCode();
+            }
+
+            bindEventListeners() {
+                // Template selection
+                document.querySelectorAll('.template-option').forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        const template = e.currentTarget.dataset.template;
+                        this.switchTemplate(template);
+                    });
+                });
+
+                // Form inputs
+                const form = document.getElementById('businessCardForm');
+                form.addEventListener('input', this.debounce((e) => {
+                    this.updateCard();
+                    this.saveToStorage();
+                }, 300));
+
+                // Character counting for about textarea
+                const aboutTextarea = document.getElementById('about');
+                aboutTextarea.addEventListener('input', this.updateCharacterCount.bind(this));
+
+                // Image uploads
+                document.getElementById('profilePicture').addEventListener('change', this.handleProfilePictureUpload.bind(this));
+                document.getElementById('companyLogo').addEventListener('change', this.handleCompanyLogoUpload.bind(this));
+
+                // Font family change
+                document.getElementById('fontFamily').addEventListener('change', this.updateCardFont.bind(this));
+
+                // Accent color change
+                document.getElementById('accentColor').addEventListener('change', this.updateAccentColor.bind(this));
+
+                // Card flip
+                document.getElementById('flipCard').addEventListener('click', this.flipCard.bind(this));
+                document.getElementById('cardContainer').addEventListener('click', this.flipCard.bind(this));
+
+                // Reset form
+                document.getElementById('resetForm').addEventListener('click', this.resetForm.bind(this));
+
+                // Export functions
+                document.getElementById('exportPNG').addEventListener('click', this.exportPNG.bind(this));
+                document.getElementById('exportPDF').addEventListener('click', this.exportPDF.bind(this));
+                document.getElementById('exportVCard').addEventListener('click', this.exportVCard.bind(this));
+
+                // Form validation
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.validateForm();
+                });
+            }
+
+            switchTemplate(templateId) {
+                // Update active template option
+                document.querySelectorAll('.template-option').forEach(option => {
+                    option.classList.remove('active');
+                });
+                document.querySelector(`[data-template="${templateId}"]`).classList.add('active');
+
+                // Update current template
+                this.currentTemplate = templateId;
+                
+                // Update card template
+                const businessCard = document.getElementById('businessCard');
+                businessCard.setAttribute('data-template', templateId);
+
+                // Update accent color input
+                const accentColorInput = document.getElementById('accentColor');
+                accentColorInput.value = this.templates[templateId].accentColor;
+
+                // Regenerate QR code with new template colors
+                this.generateQRCode();
+
+                // Save template selection
+                this.saveToStorage();
+
+                // Add animation class
+                businessCard.style.animation = 'none';
+                businessCard.offsetHeight; // Trigger reflow
+                businessCard.style.animation = 'cardSlideIn 0.6s ease-out';
+            }
+
+            loadSampleData() {
+                // Load sample data into form fields
+                Object.keys(this.sampleData).forEach(key => {
+                    const input = document.getElementById(key);
+                    if (input) {
+                        input.value = this.sampleData[key];
+                    }
+                });
+            }
+
+            updateCard() {
+                // Update name
+                const name = document.getElementById('fullName').value || this.sampleData.name;
+                document.getElementById('displayName').textContent = name;
+
+                // Update title
+                const title = document.getElementById('jobTitle').value || this.sampleData.title;
+                document.getElementById('displayTitle').textContent = title;
+
+                // Update company
+                const company = document.getElementById('company').value || this.sampleData.company;
+                document.getElementById('displayCompany').textContent = company;
+
+                // Update contact information
+                this.updateContactInfo();
+
+                // Update social links
+                this.updateSocialLinks();
+
+                // Update about section
+                const about = document.getElementById('about').value || this.sampleData.about;
+                document.getElementById('displayAbout').textContent = about;
+
+                // Update skills
+                this.updateSkills();
+
+                // Update address
+                this.updateAddress();
+
+                // Generate QR code
+                this.generateQRCode();
+            }
+
+            updateContactInfo() {
+                const email = document.getElementById('email').value || this.sampleData.email;
+                const phone = document.getElementById('phone').value || this.sampleData.phone;
+                const phoneSecondary = document.getElementById('phoneSecondary').value;
+                const website = document.getElementById('website').value || this.sampleData.website;
+
+                document.getElementById('displayEmail').textContent = email;
+                document.getElementById('displayPhone').textContent = phone;
+
+                // Show/hide secondary phone
+                const phoneSecondaryContact = document.getElementById('phoneSecondaryContact');
+                if (phoneSecondary) {
+                    document.getElementById('displayPhoneSecondary').textContent = phoneSecondary;
+                    phoneSecondaryContact.classList.remove('hidden');
+                } else {
+                    phoneSecondaryContact.classList.add('hidden');
+                }
+
+                // Show/hide website
+                const websiteContact = document.getElementById('websiteContact');
+                if (website && website !== this.sampleData.website) {
+                    document.getElementById('displayWebsite').textContent = website;
+                    websiteContact.classList.remove('hidden');
+                } else if (website === this.sampleData.website) {
+                    document.getElementById('displayWebsite').textContent = website;
+                    websiteContact.classList.remove('hidden');
+                } else {
+                    websiteContact.classList.add('hidden');
+                }
+            }
+
+            updateSocialLinks() {
+                const socialPlatforms = ['linkedin', 'github', 'twitter', 'instagram'];
+                
+                socialPlatforms.forEach(platform => {
+                    const input = document.getElementById(platform);
+                    const link = document.getElementById(`${platform}Link`);
+                    
+                    if (input.value) {
+                        let url = input.value;
+                        
+                        // Format URLs
+                        if (platform === 'linkedin' && !url.startsWith('http')) {
+                            url = url.startsWith('linkedin.com') ? `https://${url}` : `https://linkedin.com/in/${url}`;
+                        } else if (platform === 'github' && !url.startsWith('http')) {
+                            url = url.startsWith('github.com') ? `https://${url}` : `https://github.com/${url}`;
+                        } else if (platform === 'twitter') {
+                            url = url.startsWith('@') ? `https://twitter.com/${url.slice(1)}` : `https://twitter.com/${url}`;
+                        } else if (platform === 'instagram') {
+                            url = url.startsWith('@') ? `https://instagram.com/${url.slice(1)}` : `https://instagram.com/${url}`;
+                        }
+                        
+                        link.href = url;
+                        link.classList.remove('hidden');
+                    } else {
+                        link.classList.add('hidden');
+                    }
+                });
+            }
+
+            updateSkills() {
+                const skillsInput = document.getElementById('skills').value || this.sampleData.skills;
+                const skillsContainer = document.getElementById('displaySkills');
+                
+                // Clear existing skills
+                skillsContainer.innerHTML = '';
+                
+                // Split skills by comma and create tags
+                const skills = skillsInput.split(',').map(skill => skill.trim()).filter(skill => skill);
+                
+                skills.forEach(skill => {
+                    const skillTag = document.createElement('span');
+                    skillTag.className = 'skill-tag';
+                    skillTag.textContent = skill;
+                    skillsContainer.appendChild(skillTag);
+                });
+            }
+
+            updateAddress() {
+                const address = document.getElementById('address').value;
+                const addressSection = document.getElementById('addressSection');
+                
+                if (address) {
+                    document.getElementById('displayAddress').textContent = address;
+                    addressSection.classList.remove('hidden');
+                } else {
+                    addressSection.classList.add('hidden');
+                }
+            }
+
+            updateCharacterCount() {
+                const textarea = document.getElementById('about');
+                const counter = document.querySelector('.character-count');
+                const current = textarea.value.length;
+                const max = parseInt(textarea.getAttribute('maxlength'));
+                
+                counter.textContent = `${current}/${max} characters`;
+                
+                if (current > max * 0.9) {
+                    counter.style.color = 'var(--color-warning)';
+                } else if (current > max * 0.8) {
+                    counter.style.color = 'var(--color-info)';
+                } else {
+                    counter.style.color = 'var(--color-text-secondary)';
+                }
+            }
+
+            handleProfilePictureUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                        alert('Please select an image smaller than 5MB');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        document.getElementById('profileImage').src = e.target.result;
+                        this.saveToStorage();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            handleCompanyLogoUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    if (file.size > 2 * 1024 * 1024) { // 2MB limit
+                        alert('Please select an image smaller than 2MB');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const logoDisplay = document.getElementById('companyLogoDisplay');
+                        logoDisplay.src = e.target.result;
+                        logoDisplay.classList.remove('hidden');
+                        this.saveToStorage();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            updateCardFont() {
+                const fontFamily = document.getElementById('fontFamily').value;
+                const businessCard = document.getElementById('businessCard');
+                businessCard.style.fontFamily = fontFamily;
+                this.saveToStorage();
+            }
+
+            updateAccentColor() {
+                const accentColor = document.getElementById('accentColor').value;
+                const businessCard = document.getElementById('businessCard');
+                
+                // Update CSS custom properties for the current template
+                businessCard.style.setProperty('--accent-color', accentColor);
+                
+                // Update template colors
+                this.templates[this.currentTemplate].accentColor = accentColor;
+                
+                this.generateQRCode();
+                this.saveToStorage();
+            }
+
+            generateQRCode() {
+                const qrContainer = document.getElementById('qrCode');
+                qrContainer.innerHTML = ''; // Clear existing QR code
+                
+                // Get form data
+                const name = document.getElementById('fullName').value || this.sampleData.name;
+                const title = document.getElementById('jobTitle').value || this.sampleData.title;
+                const company = document.getElementById('company').value || this.sampleData.company;
+                const email = document.getElementById('email').value || this.sampleData.email;
+                const phone = document.getElementById('phone').value || this.sampleData.phone;
+                const website = document.getElementById('website').value || this.sampleData.website;
+                
+                // Create vCard data
+                const vCardData = `BEGIN:VCARD
+        VERSION:3.0
+        FN:${name}
+        ORG:${company}
+        TITLE:${title}
+        EMAIL:${email}
+        TEL:${phone}
+        URL:${website}
+        END:VCARD`;
+
+                // Determine QR code colors based on template
+                const template = this.templates[this.currentTemplate];
+                const darkColor = template.textColor;
+                const lightColor = template.backgroundColor.includes('gradient') ? '#ffffff' : template.backgroundColor;
+
+                // Generate QR code
+                try {
+                    this.qrCode = new QRCode(qrContainer, {
+                        text: vCardData,
+                        width: 80,
+                        height: 80,
+                        colorDark: darkColor,
+                        colorLight: lightColor === '#ffffff' || lightColor.includes('gradient') ? '#ffffff' : lightColor,
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+                } catch (error) {
+                    console.error('QR Code generation failed:', error);
+                }
+            }
+
+            flipCard() {
+                const businessCard = document.getElementById('businessCard');
+                this.isFlipped = !this.isFlipped;
+                
+                if (this.isFlipped) {
+                    businessCard.classList.add('flipped');
+                } else {
+                    businessCard.classList.remove('flipped');
+                }
+            }
+
+            validateForm() {
+                const requiredFields = ['fullName', 'email'];
+                let isValid = true;
+                
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    const value = field.value.trim();
+                    
+                    if (!value) {
+                        field.style.borderColor = 'var(--color-error)';
+                        isValid = false;
+                    } else {
+                        field.style.borderColor = '';
+                    }
+                });
+                
+                // Validate email format
+                const emailField = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailField.value && !emailRegex.test(emailField.value)) {
+                    emailField.style.borderColor = 'var(--color-error)';
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields with valid information.');
+                }
+                
+                return isValid;
+            }
+
+            resetForm() {
+                if (confirm('Are you sure you want to reset all fields? This will clear your current data.')) {
+                    document.getElementById('businessCardForm').reset();
+                    document.getElementById('profileImage').src = 'https://images.unsplash.com/photo-1494790108755-2616b0c2c5b6?w=150&h=150&fit=crop&crop=face';
+                    document.getElementById('companyLogoDisplay').classList.add('hidden');
+                    this.loadSampleData();
+                    this.updateCard();
+                    localStorage.removeItem('businessCardData');
+                }
+            }
+
+            async exportPNG() {
+                const card = document.getElementById('businessCard');
+                const side = this.isFlipped ? card.querySelector('.card-back') : card.querySelector('.card-front');
+                
+                try {
+                    const canvas = await html2canvas(side, {
+                        scale: 3,
+                        backgroundColor: null,
+                        useCORS: true,
+                        allowTaint: true,
+                        width: 350,
+                        height: 200
+                    });
+                    
+                    const link = document.createElement('a');
+                    link.download = `${this.getFileName()}_business_card.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                } catch (error) {
+                    console.error('PNG export failed:', error);
+                    alert('Export failed. Please try again.');
+                }
+            }
+
+            async exportPDF() {
+                const card = document.getElementById('businessCard');
+                const side = this.isFlipped ? card.querySelector('.card-back') : card.querySelector('.card-front');
+                
+                try {
+                    const canvas = await html2canvas(side, {
+                        scale: 4,
+                        backgroundColor: null,
+                        useCORS: true,
+                        allowTaint: true,
+                        width: 350,
+                        height: 200
+                    });
+                    
+                    const { jsPDF } = window.jspdf;
+                    
+                    // Standard business card dimensions in mm (3.5" x 2")
+                    const cardWidth = 88.9;  // 3.5 inches
+                    const cardHeight = 50.8; // 2 inches
+                    
+                    const pdf = new jsPDF({
+                        orientation: 'landscape',
+                        unit: 'mm',
+                        format: [cardWidth, cardHeight]
+                    });
+                    
+                    const imgData = canvas.toDataURL('image/png');
+                    pdf.addImage(imgData, 'PNG', 0, 0, cardWidth, cardHeight);
+                    pdf.save(`${this.getFileName()}_business_card.pdf`);
+                } catch (error) {
+                    console.error('PDF export failed:', error);
+                    alert('Export failed. Please try again.');
+                }
+            }
+
+            exportVCard() {
+                const name = document.getElementById('fullName').value || this.sampleData.name;
+                const title = document.getElementById('jobTitle').value || this.sampleData.title;
+                const company = document.getElementById('company').value || this.sampleData.company;
+                const email = document.getElementById('email').value || this.sampleData.email;
+                const phone = document.getElementById('phone').value || this.sampleData.phone;
+                const phoneSecondary = document.getElementById('phoneSecondary').value;
+                const website = document.getElementById('website').value || this.sampleData.website;
+                const address = document.getElementById('address').value;
+                
+                const vCardData = `BEGIN:VCARD
+        VERSION:3.0
+        FN:${name}
+        ORG:${company}
+        TITLE:${title}
+        EMAIL:${email}
+        TEL;TYPE=WORK:${phone}${phoneSecondary ? `
+        TEL;TYPE=CELL:${phoneSecondary}` : ''}
+        URL:${website}${address ? `
+        ADR;TYPE=WORK:;;${address.replace(/\n/g, ';')};;;;` : ''}
+        END:VCARD`;
+
+                const blob = new Blob([vCardData], { type: 'text/vcard' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `${this.getFileName()}_contact.vcf`;
+                link.click();
+                
+                URL.revokeObjectURL(link.href);
+            }
+
+            getFileName() {
+                const name = document.getElementById('fullName').value || this.sampleData.name;
+                return name.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+            }
+
+            saveToStorage() {
+                const formData = new FormData(document.getElementById('businessCardForm'));
+                const data = {};
+                
+                for (let [key, value] of formData.entries()) {
+                    data[key] = value;
+                }
+                
+                // Add additional data
+                data.template = this.currentTemplate;
+                data.accentColor = document.getElementById('accentColor').value;
+                data.fontFamily = document.getElementById('fontFamily').value;
+                data.profileImageSrc = document.getElementById('profileImage').src;
+                data.companyLogoSrc = document.getElementById('companyLogoDisplay').src;
+                
+                localStorage.setItem('businessCardData', JSON.stringify(data));
+            }
+
+            loadFromStorage() {
+                const savedData = localStorage.getItem('businessCardData');
+                
+                if (savedData) {
+                    try {
+                        const data = JSON.parse(savedData);
+                        
+                        // Load form data
+                        Object.keys(data).forEach(key => {
+                            const input = document.getElementById(key);
+                            if (input && data[key]) {
+                                input.value = data[key];
+                            }
+                        });
+                        
+                        // Load template
+                        if (data.template) {
+                            this.switchTemplate(data.template);
+                        }
+                        
+                        // Load images
+                        if (data.profileImageSrc && data.profileImageSrc.startsWith('data:')) {
+                            document.getElementById('profileImage').src = data.profileImageSrc;
+                        }
+                        
+                        if (data.companyLogoSrc && data.companyLogoSrc.startsWith('data:')) {
+                            document.getElementById('companyLogoDisplay').src = data.companyLogoSrc;
+                            document.getElementById('companyLogoDisplay').classList.remove('hidden');
+                        }
+                        
+                        // Load font and color
+                        if (data.fontFamily) {
+                            document.getElementById('fontFamily').value = data.fontFamily;
+                            this.updateCardFont();
+                        }
+                        
+                        if (data.accentColor) {
+                            document.getElementById('accentColor').value = data.accentColor;
+                            this.updateAccentColor();
+                        }
+                        
+                    } catch (error) {
+                        console.error('Failed to load saved data:', error);
+                    }
+                }
+            }
+
+            debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+        }
+
+        // Initialize the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new BusinessCardGenerator();
+        });
+    </script>
+</body>
+</html>
